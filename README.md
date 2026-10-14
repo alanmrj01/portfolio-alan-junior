@@ -41,6 +41,8 @@ O arquivo `src/data/projects.ts` contém todos os estudos de caso em um único a
 
 O gerador aceita apenas os nomes WebP previstos, ordena a galeria numericamente, lê as dimensões dos arquivos e interrompe o build quando uma pasta ou `capa.webp` obrigatória está ausente. `imageAlt`, enquadramento e crédito da capa continuam no catálogo editorial em `src/data/projects.ts`. Fontes, fotógrafos e licença ficam em [`public/images/projects/ATTRIBUTION.md`](public/images/projects/ATTRIBUTION.md); qualquer nova fotografia também deve ser documentada ali. As imagens são identificadas na interface como contextuais, não como capturas dos sistemas.
 
+As galerias de aplicações preservam a proporção original de cada tela e alternam automaticamente composições largas e verticais. Todo conteúdo exibido nas telas — incluindo nomes, valores, indicadores e registros — é declarado na interface como integralmente fictício e exclusivamente demonstrativo.
+
 ### Revisões editoriais importantes
 
 1. Validar a contribuição específica de Alan em cada projeto colaborativo antes de publicar autoria individual ou cargos.

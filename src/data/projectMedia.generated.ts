@@ -27,7 +27,32 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/erp-central-monitoramento/galeria-01.webp",
+        "width": 1800,
+        "height": 956,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/erp-central-monitoramento/galeria-02.webp",
+        "width": 1382,
+        "height": 868,
+        "index": 2
+      },
+      {
+        "src": "/images/projects/erp-central-monitoramento/galeria-03.webp",
+        "width": 1457,
+        "height": 844,
+        "index": 3
+      },
+      {
+        "src": "/images/projects/erp-central-monitoramento/galeria-04.webp",
+        "width": 567,
+        "height": 229,
+        "index": 4
+      }
+    ]
   },
   "ia-conversao-solicitacoes": {
     "cover": {
@@ -40,7 +65,32 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/ia-conversao-solicitacoes/galeria-01.webp",
+        "width": 1357,
+        "height": 1016,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/ia-conversao-solicitacoes/galeria-02.webp",
+        "width": 1286,
+        "height": 842,
+        "index": 2
+      },
+      {
+        "src": "/images/projects/ia-conversao-solicitacoes/galeria-03.webp",
+        "width": 1364,
+        "height": 878,
+        "index": 3
+      },
+      {
+        "src": "/images/projects/ia-conversao-solicitacoes/galeria-04.webp",
+        "width": 1366,
+        "height": 879,
+        "index": 4
+      }
+    ]
   },
   "bi-manutencao-industrial": {
     "cover": {
@@ -53,7 +103,32 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/bi-manutencao-industrial/galeria-01.webp",
+        "width": 1800,
+        "height": 872,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/bi-manutencao-industrial/galeria-02.webp",
+        "width": 1800,
+        "height": 896,
+        "index": 2
+      },
+      {
+        "src": "/images/projects/bi-manutencao-industrial/galeria-03.webp",
+        "width": 1800,
+        "height": 858,
+        "index": 3
+      },
+      {
+        "src": "/images/projects/bi-manutencao-industrial/galeria-04.webp",
+        "width": 1497,
+        "height": 723,
+        "index": 4
+      }
+    ]
   },
   "smart-organization": {
     "cover": {
@@ -66,7 +141,20 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/smart-organization/galeria-01.webp",
+        "width": 371,
+        "height": 536,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/smart-organization/galeria-02.webp",
+        "width": 960,
+        "height": 536,
+        "index": 2
+      }
+    ]
   },
   "contas-a-pagar": {
     "cover": {
@@ -79,7 +167,38 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/contas-a-pagar/galeria-01.webp",
+        "width": 1763,
+        "height": 924,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/contas-a-pagar/galeria-02.webp",
+        "width": 1800,
+        "height": 952,
+        "index": 2
+      },
+      {
+        "src": "/images/projects/contas-a-pagar/galeria-03.webp",
+        "width": 1313,
+        "height": 1016,
+        "index": 3
+      },
+      {
+        "src": "/images/projects/contas-a-pagar/galeria-04.webp",
+        "width": 1800,
+        "height": 898,
+        "index": 4
+      },
+      {
+        "src": "/images/projects/contas-a-pagar/galeria-05.webp",
+        "width": 1800,
+        "height": 899,
+        "index": 5
+      }
+    ]
   },
   "alovia": {
     "cover": {
@@ -92,7 +211,38 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/alovia/galeria-01.webp",
+        "width": 1800,
+        "height": 828,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/alovia/galeria-02.webp",
+        "width": 1800,
+        "height": 819,
+        "index": 2
+      },
+      {
+        "src": "/images/projects/alovia/galeria-03.webp",
+        "width": 474,
+        "height": 779,
+        "index": 3
+      },
+      {
+        "src": "/images/projects/alovia/galeria-04.webp",
+        "width": 474,
+        "height": 782,
+        "index": 4
+      },
+      {
+        "src": "/images/projects/alovia/galeria-05.webp",
+        "width": 558,
+        "height": 781,
+        "index": 5
+      }
+    ]
   },
   "detailer-business": {
     "cover": {
@@ -105,7 +255,50 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/detailer-business/galeria-01.webp",
+        "width": 1107,
+        "height": 841,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/detailer-business/galeria-02.webp",
+        "width": 488,
+        "height": 825,
+        "index": 2
+      },
+      {
+        "src": "/images/projects/detailer-business/galeria-03.webp",
+        "width": 421,
+        "height": 801,
+        "index": 3
+      },
+      {
+        "src": "/images/projects/detailer-business/galeria-04.webp",
+        "width": 469,
+        "height": 790,
+        "index": 4
+      },
+      {
+        "src": "/images/projects/detailer-business/galeria-05.webp",
+        "width": 437,
+        "height": 805,
+        "index": 5
+      },
+      {
+        "src": "/images/projects/detailer-business/galeria-06.webp",
+        "width": 444,
+        "height": 822,
+        "index": 6
+      },
+      {
+        "src": "/images/projects/detailer-business/galeria-07.webp",
+        "width": 460,
+        "height": 816,
+        "index": 7
+      }
+    ]
   },
   "bi-vendas": {
     "cover": {
@@ -118,7 +311,26 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/bi-vendas/galeria-01.webp",
+        "width": 974,
+        "height": 553,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/bi-vendas/galeria-02.webp",
+        "width": 967,
+        "height": 554,
+        "index": 2
+      },
+      {
+        "src": "/images/projects/bi-vendas/galeria-03.webp",
+        "width": 964,
+        "height": 552,
+        "index": 3
+      }
+    ]
   },
   "bi-fluxo-caixa": {
     "cover": {
@@ -131,7 +343,26 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/bi-fluxo-caixa/galeria-01.webp",
+        "width": 909,
+        "height": 516,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/bi-fluxo-caixa/galeria-02.webp",
+        "width": 902,
+        "height": 509,
+        "index": 2
+      },
+      {
+        "src": "/images/projects/bi-fluxo-caixa/galeria-03.webp",
+        "width": 900,
+        "height": 511,
+        "index": 3
+      }
+    ]
   },
   "bi-contratos": {
     "cover": {
@@ -144,7 +375,14 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/bi-contratos/galeria-01.webp",
+        "width": 676,
+        "height": 819,
+        "index": 1
+      }
+    ]
   },
   "bi-facilities": {
     "cover": {
@@ -157,7 +395,26 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/bi-facilities/galeria-01.webp",
+        "width": 929,
+        "height": 524,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/bi-facilities/galeria-02.webp",
+        "width": 929,
+        "height": 526,
+        "index": 2
+      },
+      {
+        "src": "/images/projects/bi-facilities/galeria-03.webp",
+        "width": 931,
+        "height": 524,
+        "index": 3
+      }
+    ]
   },
   "fichas-manobra": {
     "cover": {
@@ -170,7 +427,26 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/fichas-manobra/galeria-01.webp",
+        "width": 965,
+        "height": 570,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/fichas-manobra/galeria-02.webp",
+        "width": 969,
+        "height": 574,
+        "index": 2
+      },
+      {
+        "src": "/images/projects/fichas-manobra/galeria-03.webp",
+        "width": 976,
+        "height": 581,
+        "index": 3
+      }
+    ]
   },
   "monitoramento-inteligente": {
     "cover": {
@@ -183,7 +459,20 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/monitoramento-inteligente/galeria-01.webp",
+        "width": 412,
+        "height": 605,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/monitoramento-inteligente/galeria-02.webp",
+        "width": 962,
+        "height": 619,
+        "index": 2
+      }
+    ]
   },
   "consultoria-bi": {
     "cover": {
@@ -196,6 +485,25 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
       "width": 960,
       "height": 600
     },
-    "gallery": []
+    "gallery": [
+      {
+        "src": "/images/projects/consultoria-bi/galeria-01.webp",
+        "width": 1685,
+        "height": 944,
+        "index": 1
+      },
+      {
+        "src": "/images/projects/consultoria-bi/galeria-02.webp",
+        "width": 1676,
+        "height": 934,
+        "index": 2
+      },
+      {
+        "src": "/images/projects/consultoria-bi/galeria-03.webp",
+        "width": 1676,
+        "height": 939,
+        "index": 3
+      }
+    ]
   }
 }

@@ -13,32 +13,46 @@ export default function ProjectDetail() {
 
   const index = projects.findIndex((item) => item.id === id)
   const next = projects[(index + 1) % projects.length]
+  const currentMedia = getProjectMedia(project)
   const nextCover = getProjectMedia(next).cover
 
   return (
     <>
       <article className="case-page">
         <header className="case-opening">
-          <div className="container">
-            <div className="case-opening-nav page-enter">
-              <Link to="/projetos"><ArrowLeft size={16} /> Todos os projetos</Link>
-              <span>CASE {project.number} / {String(projects.length).padStart(2, '0')}</span>
-            </div>
-            <div className="case-opening-grid">
-              <div className="case-opening-copy">
+          <div className="case-opening-grid">
+            <aside className="case-opening-copy">
+              <div className="case-opening-copy-inner">
+                <div className="case-opening-nav page-enter">
+                  <Link to="/projetos"><ArrowLeft size={16} /> Todos os projetos</Link>
+                  <span>CASE {project.number} / {String(projects.length).padStart(2, '0')}</span>
+                </div>
                 <span className="section-label page-enter">{project.category}</span>
                 <h1 className="page-enter">{project.name}</h1>
                 <p className="page-enter">{project.summary}</p>
                 <div className="case-opening-tags page-enter">{project.technologies.slice(0, 4).map((technology) => <span key={technology}>{technology}</span>)}</div>
+
+                <div className="case-service-scope page-enter">
+                  <span className="case-section-label">ESCOPO DA SOLUÇÃO</span>
+                  <ul>{project.features.slice(0, 3).map((feature) => <li key={feature}>{feature}</li>)}</ul>
+                </div>
+
                 <div className="case-opening-index page-enter">
                   <span>{project.number}</span>
                   <p>{project.subtitle}</p>
                 </div>
+
+                <p className="case-cover-credit page-enter">Capa contextual por <a href={project.photoCredit.sourceUrl} target="_blank" rel="noreferrer">{project.photoCredit.author} / Pexels</a> — <a href={project.photoCredit.licenseUrl} target="_blank" rel="noreferrer">licença</a>.</p>
               </div>
-              <div className="case-opening-media page-enter">
-                <div className="case-cover">
-                  <ProjectGallery project={project} />
-                </div>
+            </aside>
+
+            <div className="case-opening-media page-enter">
+              <div className="case-media-topline">
+                <span>APLICAÇÃO / VISÃO DEMONSTRATIVA</span>
+                <span>{currentMedia.gallery.length || 1} {currentMedia.gallery.length === 1 ? 'IMAGEM' : 'IMAGENS'}</span>
+              </div>
+              <div className="case-cover">
+                <ProjectGallery project={project} />
               </div>
             </div>
           </div>

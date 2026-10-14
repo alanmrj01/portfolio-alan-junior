@@ -33,6 +33,8 @@ export interface PortfolioProject {
  * fornecidas ao longo da conversa. Não incluir números de resultados não comprovados.
  * Campos de tecnologia sob revisão são omitidos até confirmação.
  * As capas são fotografias contextuais do Pexels, não registros das aplicações.
+ * As galerias usam telas demonstrativas fornecidas pelo autor. Todos os nomes,
+ * valores, indicadores e registros nelas exibidos são inteiramente fictícios.
  * A planilha de autoria e licença está em public/images/projects/ATTRIBUTION.md.
  */
 export const projects: PortfolioProject[] = [

@@ -13,6 +13,7 @@ function responsiveSource(item: ProjectMediaItem) {
 
 export default function ProjectGallery({ project }: { project: PortfolioProject }) {
   const media = getProjectMedia(project)
+  const displayMedia = media.gallery.length ? media.gallery : [media.cover]
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   const [zoom, setZoom] = useState(MIN_ZOOM)
   const [offset, setOffset] = useState({ x: 0, y: 0 })
@@ -32,9 +33,9 @@ export default function ProjectGallery({ project }: { project: PortfolioProject 
     setActiveIndex(index)
   }
   const move = (direction: number) => {
-    if (activeIndex === null || media.all.length < 2) return
+    if (displayMedia.length < 2) return
     resetView()
-    setActiveIndex((activeIndex + direction + media.all.length) % media.all.length)
+    setActiveIndex((current) => current === null ? null : (current + direction + displayMedia.length) % displayMedia.length)
   }
   const changeZoom = (amount: number) => {
     setZoom((current) => {
@@ -79,27 +80,38 @@ export default function ProjectGallery({ project }: { project: PortfolioProject 
       window.removeEventListener('keydown', onKeyDown)
       openerRef.current?.focus()
     }
-  }, [activeIndex, media.all.length])
+  }, [activeIndex, displayMedia.length])
 
-  const activeItem = activeIndex === null ? null : media.all[activeIndex]
+  const activeItem = activeIndex === null ? null : displayMedia[activeIndex]
 
   return (
     <>
-      <div className={`project-gallery ${media.gallery.length ? 'has-gallery' : 'is-cover-only'}`}>
-        {media.all.map((item, index) => (
+      {media.gallery.length > 0 && (
+        <p className="project-gallery-disclaimer" role="note">
+          <strong>DEMONSTRAÇÃO VISUAL</strong>
+          Todas as telas, nomes, valores, indicadores e demais dados exibidos abaixo são inteiramente fictícios e servem somente para apresentar a solução.
+        </p>
+      )}
+      <div className={`project-gallery ${media.gallery.length ? 'has-gallery' : 'is-cover-only'} ${displayMedia.length === 1 ? 'is-single' : ''}`}>
+        {displayMedia.map((item, index) => {
+          const aspect = item.width / item.height
+          const formatClass = aspect >= 1.2 ? 'is-landscape' : aspect <= .9 ? 'is-portrait' : 'is-balanced'
+
+          return (
           <button
-            className={`project-gallery-item ${index === 0 ? 'project-gallery-primary project-photo' : ''}`}
+            className={`project-gallery-item ${formatClass} ${item.kind === 'cover' ? 'project-gallery-primary project-photo' : ''}`}
             type="button"
             key={item.src}
             onClick={(event) => open(index, event.currentTarget)}
             aria-label={`Ampliar ${item.alt}`}
+            style={{ maxWidth: `${item.width}px` }}
           >
             <picture>
               {item.smallSrc && <source media="(max-width: 720px)" srcSet={item.smallSrc} />}
               <img
                 src={item.src}
                 srcSet={responsiveSource(item)}
-                sizes={index === 0 ? '(max-width: 800px) 100vw, 88vw' : '(max-width: 720px) 100vw, 44vw'}
+                sizes={formatClass === 'is-portrait' ? '(max-width: 720px) 100vw, 34vw' : '(max-width: 980px) 100vw, 64vw'}
                 alt={item.alt}
                 loading={index === 0 ? 'eager' : 'lazy'}
                 fetchPriority={index === 0 ? 'high' : 'auto'}
@@ -109,12 +121,14 @@ export default function ProjectGallery({ project }: { project: PortfolioProject 
                 style={{ objectPosition: project.imagePosition ?? 'center' }}
               />
             </picture>
-            <span className="contextual-image-label">Imagem contextual</span>
+            <span className="contextual-image-label">{item.kind === 'cover' ? 'Imagem contextual' : 'Demonstração · dados fictícios'}</span>
             <span className="project-gallery-expand"><ZoomIn size={18} /> Ampliar</span>
+            {item.kind === 'gallery' && <span className="project-gallery-caption">Tela demonstrativa {String(index + 1).padStart(2, '0')}</span>}
           </button>
-        ))}
+          )
+        })}
       </div>
-      <p className="photo-credit">Fotografia de capa contextual por <a href={project.photoCredit.sourceUrl} target="_blank" rel="noreferrer">{project.photoCredit.author} / Pexels</a> — <a href={project.photoCredit.licenseUrl} target="_blank" rel="noreferrer">licença</a>.</p>
+      {!media.gallery.length && <p className="photo-credit">Fotografia de capa contextual por <a href={project.photoCredit.sourceUrl} target="_blank" rel="noreferrer">{project.photoCredit.author} / Pexels</a> — <a href={project.photoCredit.licenseUrl} target="_blank" rel="noreferrer">licença</a>.</p>}
 
       {activeItem && createPortal(
         <div
@@ -126,7 +140,7 @@ export default function ProjectGallery({ project }: { project: PortfolioProject 
         >
           <div className="project-lightbox-backdrop" onClick={close} aria-hidden="true" />
           <div className="project-lightbox-toolbar">
-            <span aria-live="polite">{(activeIndex ?? 0) + 1} / {media.all.length}</span>
+            <span aria-live="polite">{(activeIndex ?? 0) + 1} / {displayMedia.length}</span>
             <div>
               <button type="button" onClick={() => changeZoom(-.5)} disabled={zoom <= MIN_ZOOM} aria-label="Diminuir zoom"><ZoomOut /></button>
               <button type="button" onClick={resetView} disabled={zoom === MIN_ZOOM} aria-label="Restaurar zoom"><RotateCcw /></button>
@@ -135,7 +149,7 @@ export default function ProjectGallery({ project }: { project: PortfolioProject 
             </div>
           </div>
 
-          {media.all.length > 1 && <button className="project-lightbox-arrow is-previous" type="button" onClick={() => move(-1)} aria-label="Imagem anterior"><ChevronLeft /></button>}
+          {displayMedia.length > 1 && <button className="project-lightbox-arrow is-previous" type="button" onClick={() => move(-1)} aria-label="Imagem anterior"><ChevronLeft /></button>}
           <div
             className={`project-lightbox-stage ${zoom > MIN_ZOOM ? 'is-zoomed' : ''}`}
             onWheel={(event) => {
@@ -158,9 +172,13 @@ export default function ProjectGallery({ project }: { project: PortfolioProject 
                 const delta = event.clientX - pointer.current.x
                 if (Math.abs(delta) > 54) move(delta < 0 ? 1 : -1)
               }
+              if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
               pointer.current = null
             }}
-            onPointerCancel={() => { pointer.current = null }}
+            onPointerCancel={(event) => {
+              if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
+              pointer.current = null
+            }}
           >
             <img
               src={activeItem.src}
@@ -171,7 +189,7 @@ export default function ProjectGallery({ project }: { project: PortfolioProject 
               style={{ transform: `translate3d(${offset.x}px, ${offset.y}px, 0) scale(${zoom})` }}
             />
           </div>
-          {media.all.length > 1 && <button className="project-lightbox-arrow is-next" type="button" onClick={() => move(1)} aria-label="Próxima imagem"><ChevronRight /></button>}
+          {displayMedia.length > 1 && <button className="project-lightbox-arrow is-next" type="button" onClick={() => move(1)} aria-label="Próxima imagem"><ChevronRight /></button>}
           <p className="project-lightbox-caption">{activeItem.alt}</p>
         </div>,
         document.body,

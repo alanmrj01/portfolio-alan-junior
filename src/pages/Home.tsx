@@ -158,12 +158,12 @@ export default function Home() {
             <h2>Processo, lógica e execução.</h2>
           </div>
           <div className="about-home-grid">
-            <div className="about-data-visual" data-reveal aria-label="Composição visual abstrata sobre dados e tecnologia">
-              <span className="data-visual-index">AM / 01</span>
-              <div className="data-orbit"><span>Dados</span><i /><i /><i /></div>
-              <div className="data-bars"><span /><span /><span /><span /><span /></div>
-              <p>ENTENDER<br />CONECTAR<br />CONSTRUIR</p>
-            </div>
+            <figure className="about-portrait" data-reveal>
+              <img src="/images/alan/alan-magalhaes.webp" alt="Alan Magalhães em um ambiente de tecnologia" width="599" height="587" loading="lazy" decoding="async" />
+              <span className="about-portrait-index">AM / 01</span>
+              <span className="about-portrait-role">DADOS · AUTOMAÇÃO · SISTEMAS</span>
+              <figcaption>Alan Magalhães<br /><strong>São Paulo · Brasil</strong></figcaption>
+            </figure>
             <div className="about-home-copy" data-reveal>
               <p className="about-lead">Transformo problemas operacionais em soluções digitais que aproximam informação, regras e ação.</p>
               <p>Meu trabalho conecta Business Intelligence, automação e desenvolvimento de sistemas. Cada projeto começa pela leitura do processo real: suas exceções, dependências e decisões críticas.</p>

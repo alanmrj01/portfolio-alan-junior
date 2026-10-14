@@ -20,3 +20,28 @@ Todas foram obtidas no Pexels e são utilizadas conforme a [licença do Pexels](
 | 12 — Fichas de Manobra | `fichas-manobra/capa{,-960}.webp` | Vjanodic WERSOV | [Pexels](https://www.pexels.com/photo/industrial-control-room-with-electrical-panels-38217230/) |
 | 13 — Monitoramento Inteligente | `monitoramento-inteligente/capa{,-960}.webp` | panumas nikhomkhai | [Pexels](https://www.pexels.com/photo/it-technician-working-in-data-center-server-room-37605911/) |
 | 14 — Consultoria BI & Dashboards | `consultoria-bi/capa{,-960}.webp` | Yan Krukau | [Pexels](https://www.pexels.com/photo/coworkers-looking-at-a-laptop-in-a-meeting-7698802/) |
+
+## Galerias das aplicações
+
+As imagens `galeria-*.webp` foram fornecidas pelo autor do portfólio e apresentam interfaces demonstrativas dos projetos. Elas não são fotografias de terceiros.
+
+**Aviso obrigatório:** todas as telas, nomes, valores, indicadores, empresas, pessoas, registros e demais dados visíveis nessas imagens são inteiramente fictícios e utilizados apenas para demonstração visual. As galerias não devem ser interpretadas como exposição de dados operacionais, pessoais ou corporativos reais.
+
+Os 49 arquivos foram convertidos para WebP sem distorção de proporção. Imagens maiores foram reduzidas somente até o limite de 1800 px no lado mais longo; imagens menores não foram ampliadas.
+
+| Projeto | Imagens demonstrativas |
+| --- | ---: |
+| ERP — Central de Monitoramento | 4 |
+| IA — Classificação de Solicitações | 4 |
+| BI — Manutenção Industrial | 4 |
+| Smart Organization | 2 |
+| Contas a Pagar | 5 |
+| Alovia | 5 |
+| Detailer Business | 7 |
+| BI — Análise de Vendas | 3 |
+| BI — Fluxo de Caixa | 3 |
+| BI — Gestão de Contratos | 1 |
+| BI — Vendas & Facilities | 3 |
+| Automação — Fichas de Manobra | 3 |
+| Automação — Monitoramento Inteligente | 2 |
+| Consultoria em BI & Dashboards | 3 |
