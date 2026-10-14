@@ -24,7 +24,7 @@ function circularOffset(index: number, active: number, total: number) {
 }
 
 export default function FeaturedCarousel({ projects }: Props) {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(2)
   const stageRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<Array<HTMLAnchorElement | null>>([])
   const pointerGesture = useRef<PointerGesture | null>(null)
