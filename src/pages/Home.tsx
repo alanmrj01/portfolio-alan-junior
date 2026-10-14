@@ -104,7 +104,9 @@ export default function Home() {
       <section id="inicio" className="home-hero" aria-labelledby="hero-title">
         <div className="container home-hero-inner">
           <div className="hero-identity page-enter">
-            <span className="hero-monogram" aria-hidden="true">AM</span>
+            <span className="hero-monogram" aria-hidden="true">
+              <img src="/images/alan/alan-magalhaes.webp" alt="" width="599" height="587" />
+            </span>
             <p>OLÁ, SOU<br /><strong>ALAN MAGALHÃES</strong></p>
           </div>
           <div className="hero-statement">
@@ -169,8 +171,6 @@ export default function Home() {
           <div className="about-home-grid">
             <figure className="about-portrait" data-reveal>
               <img src="/images/alan/alan-magalhaes.webp" alt="Alan Magalhães em um ambiente de tecnologia" width="599" height="587" loading="lazy" decoding="async" />
-              <span className="about-portrait-index">AM / 01</span>
-              <span className="about-portrait-role">DADOS · AUTOMAÇÃO · SISTEMAS</span>
               <figcaption>Alan Magalhães<br /><strong>São Paulo · Brasil</strong></figcaption>
             </figure>
             <div className="about-home-copy" data-reveal>

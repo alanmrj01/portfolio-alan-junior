@@ -153,7 +153,6 @@ export default function FeaturedCarousel({ projects }: Props) {
             }}
           >
             <PreviewArt project={project} featured priority={index === 0} />
-            <span className="carousel-card-number">{project.number}</span>
           </Link>
         ))}
         <button className="carousel-arrow carousel-arrow-prev" type="button" data-carousel-control onClick={() => stepBy(-1)} aria-label="Projeto anterior"><ArrowLeft /></button>

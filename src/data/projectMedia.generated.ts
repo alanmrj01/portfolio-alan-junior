@@ -241,6 +241,12 @@ export const projectMediaManifest: Record<string, GeneratedProjectMedia> = {
         "width": 558,
         "height": 781,
         "index": 5
+      },
+      {
+        "src": "/images/projects/alovia/galeria-06.webp",
+        "width": 941,
+        "height": 1672,
+        "index": 6
       }
     ]
   },

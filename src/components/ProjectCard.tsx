@@ -5,7 +5,7 @@ import PreviewArt from './PreviewArt'
 
 export default function ProjectCard({ project, compact = false }: { project: PortfolioProject; compact?: boolean }) {
   return <Link className={`project-card ${compact ? 'compact' : ''} ${project.featured ? 'is-featured' : ''}`} to={`/projetos/${project.id}`} data-reveal="project" aria-label={`Abrir estudo de caso: ${project.name}`}>
-    <div className="project-image-wrap"><PreviewArt project={project} /><span className="project-link-icon"><span>Ver case</span><ArrowUpRight size={19}/></span></div>
+    <div className="project-image-wrap"><PreviewArt project={project} featured={project.featuredGalleryImage !== undefined} /><span className="project-link-icon"><span>Ver case</span><ArrowUpRight size={19}/></span></div>
     <div className="project-meta"><span>{project.category}</span><span>{project.number} / {project.featured ? 'DESTAQUE' : 'CASE'}</span></div>
     <div className="project-card-copy">
       <h2>{project.name}</h2>
