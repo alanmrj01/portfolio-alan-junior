@@ -88,7 +88,7 @@ export default function ProjectGallery({ project }: { project: PortfolioProject 
     <>
       {media.gallery.length > 0 && (
         <p className="project-gallery-disclaimer" role="note">
-          <strong>DEMONSTRAÇÃO VISUAL</strong>
+          <strong>DADOS FICTÍCIOS</strong>
           Todas as telas, nomes, valores, indicadores e demais dados exibidos abaixo são inteiramente fictícios e servem somente para apresentar a solução.
         </p>
       )}
@@ -121,9 +121,7 @@ export default function ProjectGallery({ project }: { project: PortfolioProject 
                 style={{ objectPosition: project.imagePosition ?? 'center' }}
               />
             </picture>
-            <span className="contextual-image-label">{item.kind === 'cover' ? 'Imagem contextual' : 'Demonstração · dados fictícios'}</span>
             <span className="project-gallery-expand"><ZoomIn size={18} /> Ampliar</span>
-            {item.kind === 'gallery' && <span className="project-gallery-caption">Tela demonstrativa {String(index + 1).padStart(2, '0')}</span>}
           </button>
           )
         })}
@@ -190,7 +188,6 @@ export default function ProjectGallery({ project }: { project: PortfolioProject 
             />
           </div>
           {displayMedia.length > 1 && <button className="project-lightbox-arrow is-next" type="button" onClick={() => move(1)} aria-label="Próxima imagem"><ChevronRight /></button>}
-          <p className="project-lightbox-caption">{activeItem.alt}</p>
         </div>,
         document.body,
       )}

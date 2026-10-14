@@ -43,7 +43,7 @@ export default function Header() {
 
   return <header className={`site-header ${isScrolled ? 'is-scrolled' : ''}`}>
     <div className="header-inner container">
-      <Link to="/" className="logo" aria-label="Alan Magalhães, início"><span className="logo-mark">A<span>M</span></span><span className="logo-name">ALAN<br/>MAGALHÃES</span></Link>
+      <Link to="/" className="logo" aria-label="Alan Magalhães, início"><span className="logo-mark" aria-hidden="true"><span>A</span><span>M</span></span><span className="logo-name">ALAN<br/>MAGALHÃES</span></Link>
       <nav id="main-navigation" className={`main-nav ${isOpen ? 'is-open' : ''}`} aria-label="Navegação principal">
         {homeLinks.slice(0, 1).map((link) => <a key={link.id} href={pathname === '/' ? `#${link.id}` : `/#${link.id}`} className={`nav-link ${pathname === '/' && activeSection === link.id ? 'active' : ''}`}>{link.text}</a>)}
         <Link to="/projetos" className={`nav-link ${pathname.startsWith('/projetos') ? 'active' : ''}`}>Projetos</Link>

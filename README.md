@@ -35,11 +35,11 @@ No Netlify: build `npm run build`, diretório `dist`. Já inclui `netlify.toml` 
 
 ## Gestão de conteúdo
 
-O arquivo `src/data/projects.ts` contém todos os estudos de caso em um único array tipado `projects`. Para editar um projeto, localize seu `id` e altere os campos. O texto foi redigido de forma cautelosa: nenhuma porcentagem de melhoria/ganho é inventada.
+O arquivo `src/data/projects.ts` contém todos os estudos de caso em um único array tipado `projects`. Para editar um projeto, localize seu `id` e altere os campos. O texto foi redigido de forma cautelosa: nenhuma porcentagem de melhoria/ganho é inventada. Nos projetos em destaque, `featuredGalleryImage` define qual tela real da galeria aparece no carrossel.
 
 **Imagens:** cada `id` de projeto possui uma pasta homônima em `public/images/projects/`. A capa principal é `capa.webp`, a variante responsiva opcional é `capa-960.webp` e as imagens complementares usam `galeria-01.webp`, `galeria-02.webp` e assim por diante. Para adicionar uma imagem à galeria, basta colocá-la na pasta correta e executar `npm run dev` ou `npm run build`; o manifesto tipado em `src/data/projectMedia.generated.ts` é recriado automaticamente. Durante o desenvolvimento, o Vite também observa inclusões, alterações e remoções nessas pastas.
 
-O gerador aceita apenas os nomes WebP previstos, ordena a galeria numericamente, lê as dimensões dos arquivos e interrompe o build quando uma pasta ou `capa.webp` obrigatória está ausente. `imageAlt`, enquadramento e crédito da capa continuam no catálogo editorial em `src/data/projects.ts`. Fontes, fotógrafos e licença ficam em [`public/images/projects/ATTRIBUTION.md`](public/images/projects/ATTRIBUTION.md); qualquer nova fotografia também deve ser documentada ali. As imagens são identificadas na interface como contextuais, não como capturas dos sistemas.
+O gerador aceita apenas os nomes WebP previstos, ordena a galeria numericamente, lê as dimensões dos arquivos e interrompe o build quando uma pasta ou `capa.webp` obrigatória está ausente. `imageAlt`, enquadramento e crédito da capa continuam no catálogo editorial em `src/data/projects.ts`. Fontes, fotógrafos e licença ficam em [`public/images/projects/ATTRIBUTION.md`](public/images/projects/ATTRIBUTION.md); qualquer nova fotografia também deve ser documentada ali. O carrossel de destaques utiliza telas reais das aplicações; fotografias contextuais permanecem apenas como capas editoriais creditadas nos estudos de caso.
 
 As galerias de aplicações preservam a proporção original de cada tela e alternam automaticamente composições largas e verticais. Todo conteúdo exibido nas telas — incluindo nomes, valores, indicadores e registros — é declarado na interface como integralmente fictício e exclusivamente demonstrativo.
 
@@ -48,7 +48,7 @@ As galerias de aplicações preservam a proporção original de cada tela e alte
 1. Validar a contribuição específica de Alan em cada projeto colaborativo antes de publicar autoria individual ou cargos.
 2. Validar se a menção pública à Embraer e sistemas internos de manutenção está autorizada; não publicar dados reais, credenciais, nomes de contratadas ou capturas sensíveis.
 3. Confirmar stack e escopo exatos de **Contas a Pagar**; atualmente as tecnologias específicas não são afirmadas.
-4. No **Alovia**, o fluxo de conexão oficial Meta/WhatsApp estava em validação; não informar implementação concluída até verificação.
+4. No **Alovia**, as telas fornecidas mostram o canal do WhatsApp como conectado. Limitar o texto público ao estado visível e não ampliar a afirmação sem validação técnica adicional.
 5. Só publicar métricas comprovadas na fonte original; a redução superior a 80% do fluxo de Fichas de Manobra foi preservada por estar documentada no portfólio-base.
 6. Atualizar a biografia de `/sobre` com formação, experiências e vínculos autorizados por Alan.
 7. Manter a descrição dos projetos alinhada às páginas internas do Google Sites e revisar qualquer novo dado antes da publicação.

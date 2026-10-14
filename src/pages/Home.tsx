@@ -1,4 +1,4 @@
-import { ArrowUpRight, Blocks, Braces, ChartNoAxesCombined, Workflow } from 'lucide-react'
+import { ArrowUpRight, Braces, ChartNoAxesCombined, Workflow } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import {
   SiFastapi,
@@ -74,18 +74,27 @@ const services = [
     title: 'Business Intelligence & Analytics',
     description: 'Dashboards, integração e modelagem de dados para análises operacionais e gerenciais.',
     tags: ['POWER BI', 'MODELAGEM', 'INDICADORES'],
+    category: 'Business Intelligence',
+    image: '/images/projects/bi-manutencao-industrial/galeria-02.webp',
+    imageAlt: 'Dashboard de manutenção industrial com indicadores e gráficos',
   },
   {
     icon: <Workflow />,
     title: 'Automação & Inteligência Artificial',
     description: 'Fluxos automatizados, regras determinísticas e IA aplicada à execução de processos.',
     tags: ['POWER AUTOMATE', 'PYTHON', 'IA APLICADA'],
+    category: 'Automação',
+    image: '/images/projects/fichas-manobra/galeria-01.webp',
+    imageAlt: 'Fluxo automatizado de fichas de manobra no Power Automate',
   },
   {
     icon: <Braces />,
     title: 'Sistemas & Integrações',
     description: 'Aplicações empresariais e APIs que conectam ferramentas, dados e operações.',
     tags: ['REACT', 'FASTAPI', 'APIS'],
+    category: 'Sistemas & IA',
+    image: '/images/projects/erp-central-monitoramento/galeria-01.webp',
+    imageAlt: 'Tela principal do ERP Central de Monitoramento',
   },
 ]
 
@@ -117,7 +126,7 @@ export default function Home() {
         <div className="container works-heading" data-reveal>
           <span className="section-label">PROJETOS EM DESTAQUE</span>
           <h2>Latest Works</h2>
-          <p>Fotografias contextuais apresentam o setor de cada solução; os detalhes técnicos estão nos estudos de caso.</p>
+          <p>Telas reais dos projetos apresentam as soluções em uso; cada estudo de caso detalha contexto, decisões e escopo.</p>
         </div>
         <FeaturedCarousel projects={featuredProjects} />
       </section>
@@ -183,15 +192,15 @@ export default function Home() {
           </div>
           <div className="service-card-grid">
             {services.map((service, index) => (
-              <article className="service-card" key={service.title} data-reveal="service">
+              <Link className="service-card" key={service.title} data-reveal="service" to={`/projetos?categoria=${encodeURIComponent(service.category)}`} aria-label={`Ver projetos de ${service.category}`}>
                 <div className="service-card-top"><span>0{index + 1}</span>{service.icon}</div>
-                <Blocks className="service-watermark" aria-hidden="true" />
+                <div className="service-card-media"><img src={service.image} alt={service.imageAlt} loading="lazy" decoding="async" /></div>
                 <div>
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
                   <div className="service-tags">{service.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

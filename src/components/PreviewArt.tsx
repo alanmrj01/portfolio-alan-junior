@@ -3,31 +3,34 @@ import { getProjectMedia } from '../data/projectMedia'
 
 interface Props {
   project: PortfolioProject
+  featured?: boolean
   large?: boolean
   priority?: boolean
 }
 
-export default function PreviewArt({ project, large = false, priority = false }: Props) {
-  const { cover } = getProjectMedia(project)
+export default function PreviewArt({ project, featured = false, large = false, priority = false }: Props) {
+  const media = getProjectMedia(project)
+  const image = featured && media.gallery.length
+    ? media.gallery.find((item) => item.index === project.featuredGalleryImage) ?? media.gallery[0]
+    : media.cover
 
   return (
-    <figure className={`project-photo ${large ? 'project-photo-large' : ''}`}>
+    <figure className={`project-photo ${featured ? 'project-photo-real' : ''} ${large ? 'project-photo-large' : ''}`}>
       <picture>
-        {cover.smallSrc && <source media="(max-width: 720px)" srcSet={cover.smallSrc} />}
+        {image.smallSrc && <source media="(max-width: 720px)" srcSet={image.smallSrc} />}
         <img
-          src={cover.src}
-          srcSet={cover.smallSrc ? `${cover.smallSrc} ${cover.smallWidth ?? 960}w, ${cover.src} ${cover.width}w` : undefined}
+          src={image.src}
+          srcSet={image.smallSrc ? `${image.smallSrc} ${image.smallWidth ?? 960}w, ${image.src} ${image.width}w` : undefined}
           sizes={large ? '(max-width: 800px) 100vw, 88vw' : '(max-width: 720px) 88vw, 38vw'}
-          alt={project.imageAlt}
+          alt={featured ? `${project.name} — tela real da aplicação` : project.imageAlt}
           loading={priority ? 'eager' : 'lazy'}
           fetchPriority={priority ? 'high' : 'auto'}
           decoding="async"
-          width={cover.width}
-          height={cover.height}
-          style={{ objectPosition: project.imagePosition ?? 'center' }}
+          width={image.width}
+          height={image.height}
+          style={{ objectPosition: featured ? 'center' : project.imagePosition ?? 'center' }}
         />
       </picture>
-      <span className="contextual-image-label">Imagem contextual</span>
     </figure>
   )
 }

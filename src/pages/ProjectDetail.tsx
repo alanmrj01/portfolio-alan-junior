@@ -48,7 +48,6 @@ export default function ProjectDetail() {
 
             <div className="case-opening-media page-enter">
               <div className="case-media-topline">
-                <span>APLICAÇÃO / VISÃO DEMONSTRATIVA</span>
                 <span>{currentMedia.gallery.length || 1} {currentMedia.gallery.length === 1 ? 'IMAGEM' : 'IMAGENS'}</span>
               </div>
               <div className="case-cover">

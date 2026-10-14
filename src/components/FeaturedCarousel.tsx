@@ -152,7 +152,7 @@ export default function FeaturedCarousel({ projects }: Props) {
               }
             }}
           >
-            <PreviewArt project={project} priority={index === 0} />
+            <PreviewArt project={project} featured priority={index === 0} />
             <span className="carousel-card-number">{project.number}</span>
           </Link>
         ))}
