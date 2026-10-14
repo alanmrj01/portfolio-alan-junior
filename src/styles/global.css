@@ -60,7 +60,7 @@ figure { margin: 0; }
 .menu-button { display: none; width: 44px; height: 44px; border: 1px solid var(--line-strong); border-radius: 12px; background: transparent; cursor: pointer; }
 
 /* Hero */
-.home-hero { min-height: 700px; height: clamp(700px, 92svh, 880px); border-bottom: 1px solid var(--line); overflow: hidden; }
+.home-hero { min-height: 620px; height: clamp(620px, 72svh, 760px); border-bottom: 1px solid var(--line); overflow: hidden; }
 .home-hero::before { content: ''; position: absolute; inset: 0; opacity: .24; pointer-events: none; background-image: radial-gradient(rgba(255,255,255,.13) .6px, transparent .6px); background-size: 7px 7px; mask-image: linear-gradient(110deg, #000 0 36%, transparent 72%); }
 .home-hero-inner { position: relative; height: 100%; display: grid; grid-template-columns: minmax(190px, 2.4fr) minmax(0, 9.6fr); grid-template-rows: 1fr auto; column-gap: clamp(54px, 8vw, 142px); align-items: center; padding-top: 96px; padding-bottom: 54px; }
 .hero-identity { align-self: center; justify-self: end; width: 170px; }
@@ -69,7 +69,7 @@ figure { margin: 0; }
 .hero-identity strong { color: var(--ink); font-weight: 600; }
 .hero-statement { align-self: center; max-width: 1140px; }
 .hero-kicker { margin: 0 0 24px; color: var(--green); font: 600 12px var(--condensed); letter-spacing: .13em; }
-.home-hero-title { margin: 0; font: 540 clamp(62px, 6.9vw, 124px)/.85 var(--display); letter-spacing: -.07em; }
+.home-hero-title { margin: 0; font: 540 clamp(60px, 6.1vw, 112px)/.85 var(--display); letter-spacing: -.07em; }
 .home-hero-title span { display: block; }
 .home-hero-title em { color: #d8daec; font-style: normal; }
 .hero-button, .button, .editorial-link, .carousel-case-link { display: inline-flex; align-items: center; justify-content: center; gap: 22px; }
@@ -78,8 +78,8 @@ figure { margin: 0; }
 .hero-meta { grid-column: 1 / -1; display: flex; justify-content: space-between; color: #787a7e; font: 600 10px var(--condensed); letter-spacing: .12em; }
 
 /* Latest Works */
-.latest-works-section { position: relative; overflow: hidden; padding: 72px 0 116px; background: #111214; }
-.works-heading { display: grid; grid-template-columns: 1fr auto; align-items: end; margin-bottom: 42px; }
+.latest-works-section { position: relative; overflow: hidden; padding: 50px 0 116px; background: #111214; }
+.works-heading { display: grid; grid-template-columns: 1fr auto; align-items: end; margin-bottom: 28px; }
 .works-heading .section-label { grid-column: 1 / -1; margin-bottom: 9px; color: var(--green); }
 .works-heading h2 { margin: 0; font: 520 clamp(52px, 6vw, 96px)/1 var(--display); letter-spacing: -.06em; }
 .works-heading p { max-width: 410px; margin: 0 0 8px; color: var(--muted); font-size: 14px; line-height: 1.65; }
@@ -329,7 +329,7 @@ figure { margin: 0; }
   .hero-identity { gap: 12px; }.hero-monogram { width: 42px; height: 42px; }.hero-identity p { font-size: 18px; }
   .hero-kicker { margin-bottom: 15px; }.home-hero-title { font-size: clamp(44px, 13vw, 62px); line-height: .92; }.hero-button { width: 100%; margin-top: 32px; }
   .hero-meta { display: none; }
-  .latest-works-section { padding-top: 62px; }.works-heading h2 { font-size: 51px; }.carousel-stage { height: 390px; }.carousel-card { width: 78vw; }.carousel-copy { min-height: 0; }.carousel-copy h3 { font-size: 31px; }.carousel-footer { align-items: flex-end; }.carousel-footer .button { max-width: 150px; text-align: center; }.carousel-progress { gap: 8px; }.carousel-progress button { width: 7px; height: 7px; }.carousel-progress button.is-active { width: 34px; }
+  .latest-works-section { padding-top: 62px; }.works-heading { margin-bottom: 42px; }.works-heading h2 { font-size: 51px; }.carousel-stage { height: 390px; }.carousel-card { width: 78vw; }.carousel-copy { min-height: 0; }.carousel-copy h3 { font-size: 31px; }.carousel-footer { align-items: flex-end; }.carousel-footer .button { max-width: 150px; text-align: center; }.carousel-progress { gap: 8px; }.carousel-progress button { width: 7px; height: 7px; }.carousel-progress button.is-active { width: 34px; }
   .centered-heading { margin-bottom: 48px; }.centered-heading h2 { font-size: 42px; }
   .stack-icon-grid { grid-template-columns: repeat(2,1fr); }.stack-icon-card { border-radius: 18px; }.stack-icon svg { width: 34px; height: 34px; }
   .about-heading { margin-bottom: 52px; }.about-data-visual { min-height: 360px; }.data-orbit { width: 180px; }.about-home-copy .about-lead { font-size: 31px; }.about-home-copy p { font-size: 15px; }
