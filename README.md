@@ -1,6 +1,6 @@
 # Portfólio — Alan de Magalhães Raimundo Junior
 
-Portfólio profissional responsivo com direção editorial escura, narrativa de estudos de caso, filtros por categoria e um sistema de movimento baseado em GSAP, ScrollTrigger e View Transitions com fallback. Textos em português e imagens **deliberadamente não definidas**, conforme solicitado.
+Portfólio profissional responsivo com direção editorial escura, galeria horizontal de projetos, estudos de caso objetivos e um sistema de movimento baseado em GSAP, ScrollTrigger e View Transitions com fallback. Os textos estão em português e as fotografias contextuais possuem origem e licença documentadas.
 
 ## Executar localmente
 
@@ -24,19 +24,20 @@ No Netlify: build `npm run build`, diretório `dist`. Já inclui `netlify.toml` 
 
 ## Funcionalidades presentes
 
-- Home editorial: apresentação profissional, destaques, especialidades e tecnologias.
+- Home editorial na ordem Header → Hero → Latest Works → Stacks & Tools → Ecossistema → Sobre → Serviços → Contato → Footer.
+- Carrossel autoral com escala, profundidade e continuidade visual, controlado por setas, teclado e gestos de toque.
 - Página `/projetos`: 14 cases e filtro por categoria.
-- Página `/projetos/:id`: narrativa de case com contexto, desafio, solução, fluxo conceitual, funcionalidades, stack e contribuições.
+- Página `/projetos/:id`: abertura, desafio e solução, destaques técnicos, tecnologias, entregas e próximo projeto.
 - Página `/sobre`: apresentação profissional provisória.
 - Navegação mobile, contatos (e-mail, WhatsApp, LinkedIn), transições entre rotas, animações com GSAP/ScrollTrigger e suporte a movimento reduzido.
-- Cards com arte abstrata própria e nome do projeto exibido uma única vez, sem fotografias ou telas fictícias.
+- Capas responsivas em WebP para os 14 projetos, com carregamento prioritário ou lazy loading conforme a posição.
 - Separação de conteúdo e interface em TypeScript para fácil manutenção.
 
 ## Gestão de conteúdo
 
 O arquivo `src/data/projects.ts` contém todos os estudos de caso em um único array tipado `projects`. Para editar um projeto, localize seu `id` e altere os campos. O texto foi redigido de forma cautelosa: nenhuma porcentagem de melhoria/ganho é inventada.
 
-**Imagens:** Coloque arquivos aprovados em `public/images/` e adicione `image: '/images/arquivo.webp'` no projeto correspondente. Antes disso, a interface exibe arte abstrata explicitamente marcada como visual em preparação — não são capturas falsas de sistemas.
+**Imagens:** cada projeto define `image`, `imageSmall`, `imageAlt`, `imagePosition` e `photoCredit`. As 28 variantes WebP estão em `public/images/projects/`; fontes, fotógrafos e licença ficam em [`public/images/projects/ATTRIBUTION.md`](public/images/projects/ATTRIBUTION.md). As fotografias são identificadas na interface como imagens contextuais, não como capturas dos sistemas.
 
 ### Revisões editoriais importantes
 
@@ -44,23 +45,23 @@ O arquivo `src/data/projects.ts` contém todos os estudos de caso em um único a
 2. Validar se a menção pública à Embraer e sistemas internos de manutenção está autorizada; não publicar dados reais, credenciais, nomes de contratadas ou capturas sensíveis.
 3. Confirmar stack e escopo exatos de **Contas a Pagar**; atualmente as tecnologias específicas não são afirmadas.
 4. No **Alovia**, o fluxo de conexão oficial Meta/WhatsApp estava em validação; não informar implementação concluída até verificação.
-5. Dados mensuráveis (economia de horas, taxas de assertividade, redução de retrabalho) ficam fora até possuir medições validadas.
+5. Só publicar métricas comprovadas na fonte original; a redução superior a 80% do fluxo de Fichas de Manobra foi preservada por estar documentada no portfólio-base.
 6. Atualizar a biografia de `/sobre` com formação, experiências e vínculos autorizados por Alan.
-7. Confirmar cada case presente nas páginas internas do Google Sites: a página Home pública foi verificada, mas o menu interno não estava integralmente acessível na recuperação externa. Os projetos detalhados também refletem contexto fornecido na conversa.
+7. Manter a descrição dos projetos alinhada às páginas internas do Google Sites e revisar qualquer novo dado antes da publicação.
 
 ## Stack do portfólio
 
-React 19, Vite, TypeScript, React Router, GSAP + ScrollTrigger, lucide-react, CSS responsivo. Esta é a stack **do portfólio**, independente das stacks exibidas nos cases.
+React 19, Vite, TypeScript, React Router, GSAP + ScrollTrigger, lucide-react, react-icons e CSS responsivo. Esta é a stack **do portfólio**, independente das stacks exibidas nos cases.
 
 ## Organização
 
 ```text
 src/
-  components/   Header, Footer, ProjectCard, PreviewArt, ScrollEffects
+  components/   Header, Footer, FeaturedCarousel, ProjectCard, PreviewArt, ScrollEffects
   data/         projects.ts  <- catálogo editável
   pages/        Home, Projects, ProjectDetail, About, NotFound
   styles/       global.css
-public/images/  <- imagens futuras
+public/images/projects/  <- capas WebP e créditos
 netlify.toml
 ```
 

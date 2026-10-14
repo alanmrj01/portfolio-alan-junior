@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 export default function ScrollEffects() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -25,9 +25,6 @@ export default function ScrollEffects() {
 
       const go = () => {
         navigate(`${next}${destination.hash}`)
-        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-        window.requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }))
-        window.setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 80)
       }
       if (reducedMotion) {
         go()
@@ -54,9 +51,16 @@ export default function ScrollEffects() {
   }, [navigate])
 
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' })
-    const scrollFrame = window.requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }))
-    const scrollTimer = window.setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 80)
+    const moveToDestination = () => {
+      if (hash) {
+        document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'start', behavior: 'auto' })
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      }
+    }
+    moveToDestination()
+    const scrollFrame = window.requestAnimationFrame(moveToDestination)
+    const scrollTimer = window.setTimeout(moveToDestination, 90)
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reducedMotion) {
       gsap.set('.route-curtain', { yPercent: -102 })
@@ -70,9 +74,15 @@ export default function ScrollEffects() {
       gsap.fromTo('.page-enter', { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.075, ease: 'power3.out', delay: 0.2 })
       gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
         const type = el.dataset.reveal
-        const from = type === 'project' ? { autoAlpha: 0, y: 64, scale: .985 } : { autoAlpha: 0, y: 42 }
+        const from = type === 'project'
+          ? { autoAlpha: 0, y: 64, scale: .985 }
+          : type === 'stack'
+            ? { autoAlpha: 0, y: 26, scale: .9 }
+            : type === 'service'
+              ? { autoAlpha: 0, y: 54, rotateX: 5 }
+              : { autoAlpha: 0, y: 42 }
         gsap.fromTo(el, from, {
-          autoAlpha: 1, y: 0, scale: 1, duration: type === 'project' ? 1.15 : .9, ease: 'power3.out',
+          autoAlpha: 1, y: 0, scale: 1, rotateX: 0, duration: type === 'project' ? 1.15 : .9, ease: 'power3.out',
           scrollTrigger: { trigger: el, start: 'top 91%', once: true }
         })
       })
@@ -95,6 +105,6 @@ export default function ScrollEffects() {
       window.clearTimeout(scrollTimer)
       context.revert()
     }
-  }, [pathname])
+  }, [pathname, hash])
   return null
 }
