@@ -1,6 +1,6 @@
 # Portfólio — Alan de Magalhães Raimundo Junior
 
-Primeira versão funcional e responsiva do portfólio, com visual editorial escuro, animações leves, filtros por categoria e páginas individuais de cases. Textos em português e imagens **deliberadamente não definidas**, conforme solicitado.
+Portfólio profissional responsivo com direção editorial escura, narrativa de estudos de caso, filtros por categoria e um sistema de movimento baseado em GSAP, ScrollTrigger e View Transitions com fallback. Textos em português e imagens **deliberadamente não definidas**, conforme solicitado.
 
 ## Executar localmente
 
@@ -24,11 +24,12 @@ No Netlify: build `npm run build`, diretório `dist`. Já inclui `netlify.toml` 
 
 ## Funcionalidades presentes
 
-- Home editorial: apresentação, destaques, especialidades e tecnologias.
+- Home editorial: apresentação profissional, destaques, especialidades e tecnologias.
 - Página `/projetos`: 14 cases e filtro por categoria.
-- Página `/projetos/:id`: contextos, desafios, soluções, funcionalidades, stacks e contribuições.
+- Página `/projetos/:id`: narrativa de case com contexto, desafio, solução, fluxo conceitual, funcionalidades, stack e contribuições.
 - Página `/sobre`: apresentação profissional provisória.
-- Navegação mobile, contatos (e-mail, WhatsApp, LinkedIn), animações com GSAP/ScrollTrigger e suporte a movimento reduzido.
+- Navegação mobile, contatos (e-mail, WhatsApp, LinkedIn), transições entre rotas, animações com GSAP/ScrollTrigger e suporte a movimento reduzido.
+- Cards com arte abstrata própria e nome do projeto exibido uma única vez, sem fotografias ou telas fictícias.
 - Separação de conteúdo e interface em TypeScript para fácil manutenção.
 
 ## Gestão de conteúdo

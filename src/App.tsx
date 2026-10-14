@@ -10,6 +10,8 @@ import NotFound from './pages/NotFound'
 
 export default function App() {
   return <>
+    <a className="skip-link" href="#main-content">Pular para o conteúdo</a>
+    <div className="route-curtain" aria-hidden="true"><span>AM.</span></div>
     <ScrollEffects />
     <Header />
     <main id="main-content">

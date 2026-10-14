@@ -30,10 +30,10 @@ export interface PortfolioProject {
  */
 export const projects: PortfolioProject[] = [
   {
-    id: 'erp-central-monitoramento', number: '01', name: 'ERP Central de Monitoramento',
+    id: 'erp-central-monitoramento', number: '01', name: 'ERP — Central de Monitoramento',
     eyebrow: 'SISTEMAS CORPORATIVOS / MANUTENÇÃO INDUSTRIAL',
-    subtitle: 'Uma camada de inteligência operacional integrada ao Fracttal One.',
-    summary: 'Plataforma modular para automatizar procedimentos, organizar dados e reduzir etapas manuais na gestão da manutenção industrial.',
+    subtitle: 'Automação, inteligência artificial e integrações para a manutenção industrial.',
+    summary: 'ERP operacional que combina regras determinísticas, IA aplicada, automação de processos e integração ao Fracttal One.',
     category: 'Sistemas & IA', visual: 'system', featured: true,
     context: 'No contexto de processos de manutenção industrial associados à Embraer, a rotina envolve alto volume de solicitações, ordens de serviço, ativos e planos preventivos. Parte dos procedimentos internos exigia etapas repetitivas que não eram resolvidas diretamente pelo fluxo de trabalho adotado no Fracttal One.',
     challenge: 'Diminuir a fricção entre os procedimentos internos e a plataforma de manutenção, mantendo controle, rastreabilidade e critérios consistentes para operações de alto volume.',
@@ -51,7 +51,7 @@ export const projects: PortfolioProject[] = [
     note: 'Case de projeto colaborativo. Os dados operacionais, clientes e evidências visuais devem ser apresentados somente com autorização.'
   },
   {
-    id: 'ia-conversao-solicitacoes', number: '02', name: 'Classificação Inteligente de Solicitações',
+    id: 'ia-conversao-solicitacoes', number: '02', name: 'IA — Classificação de Solicitações',
     eyebrow: 'INTELIGÊNCIA ARTIFICIAL / MOTOR DE REGRAS',
     subtitle: 'IA aplicada com critérios determinísticos, não uma caixa-preta.',
     summary: 'Mecanismo híbrido de interpretação e classificação de chamados, integrado à conversão de solicitações em ordens de serviço.',
@@ -71,7 +71,7 @@ export const projects: PortfolioProject[] = [
     note: 'É um módulo destacado do ERP Central de Monitoramento, não uma implantação independente.'
   },
   {
-    id: 'bi-manutencao-industrial', number: '03', name: 'BI de Manutenção Industrial',
+    id: 'bi-manutencao-industrial', number: '03', name: 'BI — Manutenção Industrial',
     eyebrow: 'BUSINESS INTELLIGENCE / OPERAÇÕES',
     subtitle: 'Indicadores operacionais conectados às informações de manutenção.',
     summary: 'Dashboard analítico com integração à API do Fracttal One e acompanhamento de indicadores de desempenho da manutenção.',
@@ -84,7 +84,7 @@ export const projects: PortfolioProject[] = [
     impacts: ['Visão consolidada da operação', 'Identificação de gargalos', 'Melhor acompanhamento de prioridades']
   },
   {
-    id: 'smart-organization', number: '04', name: 'Smart Organization',
+    id: 'smart-organization', number: '04', name: 'Smart Organization — Distribuição',
     eyebrow: 'AUTOMAÇÃO / ORQUESTRAÇÃO DE FLUXOS',
     subtitle: 'Distribuição inteligente de demandas conforme contexto operacional.',
     summary: 'Automação de distribuição de chamados com regras de dia, horário, disponibilidade e condições de operação.',
@@ -118,7 +118,7 @@ export const projects: PortfolioProject[] = [
     category: 'Automação', visual: 'system', featured: true,
     context: 'Plataformas de comunicação exigem conciliar requisitos de produto, autenticação, serviços de nuvem e políticas de terceiros.',
     challenge: 'Preparar fluxos de conexão, APIs e jornadas de atendimento respeitando exigências técnicas e permissões do ecossistema oficial do WhatsApp.',
-    solution: 'Estruturação de componentes de frontend, backend e integrações para suportar uma operação de atendimento especializada, incluindo etapas de integração com a infraestrutura e serviços da Meta.',
+    solution: 'Implementação de componentes de frontend e backend para a jornada de atendimento e preparação das integrações. A conexão oficial com serviços da Meta permanece apresentada como etapa em evolução, sem afirmar uma validação ainda não confirmada.',
     features: ['Integração planejada com WhatsApp Cloud API e recursos da Meta', 'Backend de API com verificações de disponibilidade', 'Jornada de autenticação e conexão de contas', 'Fluxos voltados à organização de conversas e operações de atendimento', 'Configuração e validação de serviços em nuvem'],
     technologies: ['React', 'FastAPI', 'Google Cloud Run', 'Netlify', 'WhatsApp Cloud API', 'Meta Business'],
     impacts: ['Integração entre múltiplas plataformas', 'Arquitetura orientada a APIs', 'Visão de produto e automação'],
@@ -138,7 +138,7 @@ export const projects: PortfolioProject[] = [
     impacts: ['Aprendizagem por tomada de decisão', 'Experiência com múltiplos caminhos', 'Feedback contextual ao jogador']
   },
   {
-    id: 'bi-vendas', number: '08', name: 'Análise de Vendas',
+    id: 'bi-vendas', number: '08', name: 'BI — Análise de Vendas',
     eyebrow: 'BUSINESS INTELLIGENCE / COMERCIAL',
     subtitle: 'Transformando vendas em tendências, metas e decisões.',
     summary: 'Painel de indicadores comerciais, com comparações temporais e análises por produto, categoria e cliente.',
@@ -151,7 +151,7 @@ export const projects: PortfolioProject[] = [
     impacts: ['Clareza sobre resultados', 'Leitura de tendências', 'Apoio ao planejamento comercial']
   },
   {
-    id: 'bi-fluxo-caixa', number: '09', name: 'Fluxo de Caixa',
+    id: 'bi-fluxo-caixa', number: '09', name: 'BI — Fluxo de Caixa',
     eyebrow: 'BUSINESS INTELLIGENCE / FINANÇAS',
     subtitle: 'Acompanhamento do movimento financeiro em uma visão gerencial.',
     summary: 'Dashboard financeiro para analisar entradas, saídas, saldos e comportamento dos fluxos de caixa.',
@@ -164,7 +164,7 @@ export const projects: PortfolioProject[] = [
     impacts: ['Visibilidade financeira', 'Acompanhamento de variações', 'Facilidade de análise temporal']
   },
   {
-    id: 'bi-contratos', number: '10', name: 'Gestão de Contratos',
+    id: 'bi-contratos', number: '10', name: 'BI — Gestão de Contratos',
     eyebrow: 'BUSINESS INTELLIGENCE / GOVERNANÇA',
     subtitle: 'Contratos e informações críticas em uma visão estruturada.',
     summary: 'Painel voltado ao acompanhamento contratual, com dados centralizados e recortes gerenciais.',
@@ -177,7 +177,7 @@ export const projects: PortfolioProject[] = [
     impacts: ['Maior organização documental', 'Acompanhamento de situação contratual', 'Leitura centralizada de informações']
   },
   {
-    id: 'bi-facilities', number: '11', name: 'Vendas & Facilities',
+    id: 'bi-facilities', number: '11', name: 'BI — Vendas & Facilities',
     eyebrow: 'BUSINESS INTELLIGENCE / INDICADORES',
     subtitle: 'Indicadores de operação e desempenho em um único ambiente.',
     summary: 'Painel analítico para examinar faturamento, volume e recortes comerciais de uma operação de facilities.',
@@ -190,7 +190,7 @@ export const projects: PortfolioProject[] = [
     impacts: ['Acompanhamento comercial', 'Visão segmentada da operação']
   },
   {
-    id: 'fichas-manobra', number: '12', name: 'Fichas de Manobra',
+    id: 'fichas-manobra', number: '12', name: 'Automação — Fichas de Manobra',
     eyebrow: 'AUTOMAÇÃO / PROCESSOS INDUSTRIAIS',
     subtitle: 'Digitalização e orquestração do fluxo de fichas operacionais.',
     summary: 'Automação de fluxos associados ao registro, encaminhamento e organização de fichas de manobra.',
@@ -203,7 +203,7 @@ export const projects: PortfolioProject[] = [
     impacts: ['Padronização do registro', 'Menos repasses manuais', 'Organização do histórico']
   },
   {
-    id: 'monitoramento-inteligente', number: '13', name: 'Monitoramento Inteligente',
+    id: 'monitoramento-inteligente', number: '13', name: 'Automação — Monitoramento Inteligente',
     eyebrow: 'AUTOMAÇÃO / ROTINAS RECORRENTES',
     subtitle: 'Verificações programadas e alertas orientados a condições.',
     summary: 'Fluxo automatizado de monitoramento diário, com regras de avaliação e comunicação de ocorrências.',
@@ -216,7 +216,7 @@ export const projects: PortfolioProject[] = [
     impacts: ['Regularidade no acompanhamento', 'Redução de checagens repetitivas', 'Melhor visibilidade de exceções']
   },
   {
-    id: 'consultoria-bi', number: '14', name: 'Consultoria em Dashboards',
+    id: 'consultoria-bi', number: '14', name: 'Consultoria em BI & Dashboards',
     eyebrow: 'CONSULTORIA / ESTRATÉGIA DE DADOS',
     subtitle: 'Do problema operacional à análise que orienta decisões.',
     summary: 'Projetos de análise de dados e painéis gerenciais adaptados ao contexto e à necessidade de cada processo.',

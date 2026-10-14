@@ -1,5 +1,6 @@
-import { useLayoutEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useEffect, useLayoutEffect } from 'react'
+import { flushSync } from 'react-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -7,21 +8,93 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function ScrollEffects() {
   const { pathname } = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const handleInternalNavigation = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      const anchor = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[href]')
+      if (!anchor || anchor.target === '_blank' || anchor.hasAttribute('download')) return
+      const destination = new URL(anchor.href, window.location.href)
+      if (destination.origin !== window.location.origin || destination.protocol !== 'http:' && destination.protocol !== 'https:') return
+      const current = `${window.location.pathname}${window.location.search}`
+      const next = `${destination.pathname}${destination.search}`
+      if (next === current) return
+      event.preventDefault()
+
+      const go = () => {
+        navigate(`${next}${destination.hash}`)
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+        window.requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }))
+        window.setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 80)
+      }
+      if (reducedMotion) {
+        go()
+        return
+      }
+
+      const source = anchor.closest('.project-card')
+      source?.classList.add('is-transition-source')
+      const transitionDocument = document as Document & {
+        startViewTransition?: (callback: () => void) => { finished: Promise<void> }
+      }
+
+      if (transitionDocument.startViewTransition) {
+        const transition = transitionDocument.startViewTransition(() => flushSync(go))
+        transition.finished.finally(() => source?.classList.remove('is-transition-source'))
+        return
+      }
+
+      gsap.to('.route-curtain', { yPercent: 0, duration: .36, ease: 'power3.inOut', onComplete: go })
+    }
+
+    document.addEventListener('click', handleInternalNavigation)
+    return () => document.removeEventListener('click', handleInternalNavigation)
+  }, [navigate])
+
   useLayoutEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' })
+    const scrollFrame = window.requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }))
+    const scrollTimer = window.setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 80)
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reducedMotion) return
+    if (reducedMotion) {
+      gsap.set('.route-curtain', { yPercent: -102 })
+      return () => {
+        window.cancelAnimationFrame(scrollFrame)
+        window.clearTimeout(scrollTimer)
+      }
+    }
     const context = gsap.context(() => {
-      gsap.fromTo('.page-enter', { autoAlpha: 0, y: 22 }, { autoAlpha: 1, y: 0, duration: 0.95, stagger: 0.09, ease: 'power3.out', delay: 0.12 })
+      gsap.fromTo('.route-curtain', { yPercent: 0 }, { yPercent: -102, duration: .72, ease: 'power4.inOut' })
+      gsap.fromTo('.page-enter', { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.075, ease: 'power3.out', delay: 0.2 })
       gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
-        gsap.fromTo(el, { autoAlpha: 0, y: 46 }, {
-          autoAlpha: 1, y: 0, duration: 0.95, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 93%', once: true }
+        const type = el.dataset.reveal
+        const from = type === 'project' ? { autoAlpha: 0, y: 64, scale: .985 } : { autoAlpha: 0, y: 42 }
+        gsap.fromTo(el, from, {
+          autoAlpha: 1, y: 0, scale: 1, duration: type === 'project' ? 1.15 : .9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 91%', once: true }
+        })
+      })
+      gsap.utils.toArray<HTMLElement>('[data-line]').forEach((el) => {
+        gsap.fromTo(el, { scaleX: 0, transformOrigin: 'left center' }, {
+          scaleX: 1, duration: 1.15, ease: 'power3.inOut',
+          scrollTrigger: { trigger: el, start: 'top 92%', once: true }
+        })
+      })
+      gsap.utils.toArray<HTMLElement>('[data-parallax]').forEach((el) => {
+        gsap.fromTo(el, { yPercent: -3 }, {
+          yPercent: 3, ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: .8 }
         })
       })
     })
     ScrollTrigger.refresh()
-    return () => context.revert()
+    return () => {
+      window.cancelAnimationFrame(scrollFrame)
+      window.clearTimeout(scrollTimer)
+      context.revert()
+    }
   }, [pathname])
   return null
 }

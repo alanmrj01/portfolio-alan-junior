@@ -4,11 +4,12 @@ import type { PortfolioProject } from '../data/projects'
 import PreviewArt from './PreviewArt'
 
 export default function ProjectCard({ project, compact = false }: { project: PortfolioProject; compact?: boolean }) {
-  return <Link className={`project-card ${compact ? 'compact' : ''}`} to={`/projetos/${project.id}`} data-reveal>
-    <div className="project-image-wrap"><PreviewArt project={project} /><span className="project-link-icon"><ArrowUpRight size={23}/></span></div>
-    <div className="project-meta"><span>{project.category}</span><span>/{project.number}</span></div>
-    <h3 className="project-name">{project.name}</h3>
-    <p className="project-summary">{project.summary}</p>
-    <div className="project-technologies">{project.technologies.slice(0, compact ? 3 : 5).map(tech => <span key={tech}>{tech}</span>)}</div>
+  return <Link className={`project-card ${compact ? 'compact' : ''} ${project.featured ? 'is-featured' : ''}`} to={`/projetos/${project.id}`} data-reveal="project" aria-label={`Abrir estudo de caso: ${project.name}`}>
+    <div className="project-image-wrap"><PreviewArt project={project} /><span className="project-link-icon"><span>Ver case</span><ArrowUpRight size={19}/></span></div>
+    <div className="project-meta"><span>{project.category}</span><span>{project.number} / {project.featured ? 'DESTAQUE' : 'CASE'}</span></div>
+    <div className="project-card-copy">
+      <p className="project-summary">{project.summary}</p>
+      <div className="project-technologies">{project.technologies.slice(0, compact ? 3 : 4).map(tech => <span key={tech}>{tech}</span>)}</div>
+    </div>
   </Link>
 }
