@@ -37,7 +37,9 @@ No Netlify: build `npm run build`, diretório `dist`. Já inclui `netlify.toml` 
 
 O arquivo `src/data/projects.ts` contém todos os estudos de caso em um único array tipado `projects`. Para editar um projeto, localize seu `id` e altere os campos. O texto foi redigido de forma cautelosa: nenhuma porcentagem de melhoria/ganho é inventada.
 
-**Imagens:** cada projeto define `image`, `imageSmall`, `imageAlt`, `imagePosition` e `photoCredit`. As 28 variantes WebP estão em `public/images/projects/`; fontes, fotógrafos e licença ficam em [`public/images/projects/ATTRIBUTION.md`](public/images/projects/ATTRIBUTION.md). As fotografias são identificadas na interface como imagens contextuais, não como capturas dos sistemas.
+**Imagens:** cada `id` de projeto possui uma pasta homônima em `public/images/projects/`. A capa principal é `capa.webp`, a variante responsiva opcional é `capa-960.webp` e as imagens complementares usam `galeria-01.webp`, `galeria-02.webp` e assim por diante. Para adicionar uma imagem à galeria, basta colocá-la na pasta correta e executar `npm run dev` ou `npm run build`; o manifesto tipado em `src/data/projectMedia.generated.ts` é recriado automaticamente. Durante o desenvolvimento, o Vite também observa inclusões, alterações e remoções nessas pastas.
+
+O gerador aceita apenas os nomes WebP previstos, ordena a galeria numericamente, lê as dimensões dos arquivos e interrompe o build quando uma pasta ou `capa.webp` obrigatória está ausente. `imageAlt`, enquadramento e crédito da capa continuam no catálogo editorial em `src/data/projects.ts`. Fontes, fotógrafos e licença ficam em [`public/images/projects/ATTRIBUTION.md`](public/images/projects/ATTRIBUTION.md); qualquer nova fotografia também deve ser documentada ali. As imagens são identificadas na interface como contextuais, não como capturas dos sistemas.
 
 ### Revisões editoriais importantes
 
@@ -56,12 +58,13 @@ React 19, Vite, TypeScript, React Router, GSAP + ScrollTrigger, lucide-react, re
 ## Organização
 
 ```text
+scripts/        geração e teste do manifesto de mídia
 src/
-  components/   Header, Footer, FeaturedCarousel, ProjectCard, PreviewArt, ScrollEffects
-  data/         projects.ts  <- catálogo editável
+  components/   Header, Footer, FeaturedCarousel, ProjectCard, ProjectGallery, PreviewArt, ScrollEffects
+  data/         projects.ts + manifesto de mídia gerado
   pages/        Home, Projects, ProjectDetail, About, NotFound
   styles/       global.css
-public/images/projects/  <- capas WebP e créditos
+public/images/projects/<id>/  <- capa e galeria WebP de cada projeto
 netlify.toml
 ```
 

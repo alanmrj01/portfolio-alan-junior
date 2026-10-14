@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
-import PreviewArt from '../components/PreviewArt'
+import ProjectGallery from '../components/ProjectGallery'
+import { getProjectMedia } from '../data/projectMedia'
 import { projects } from '../data/projects'
 import NotFound from './NotFound'
 
@@ -12,6 +13,7 @@ export default function ProjectDetail() {
 
   const index = projects.findIndex((item) => item.id === id)
   const next = projects[(index + 1) % projects.length]
+  const nextCover = getProjectMedia(next).cover
 
   return (
     <>
@@ -28,15 +30,16 @@ export default function ProjectDetail() {
                 <h1 className="page-enter">{project.name}</h1>
                 <p className="page-enter">{project.summary}</p>
                 <div className="case-opening-tags page-enter">{project.technologies.slice(0, 4).map((technology) => <span key={technology}>{technology}</span>)}</div>
+                <div className="case-opening-index page-enter">
+                  <span>{project.number}</span>
+                  <p>{project.subtitle}</p>
+                </div>
               </div>
-              <div className="case-opening-index page-enter">
-                <span>{project.number}</span>
-                <p>{project.subtitle}</p>
+              <div className="case-opening-media page-enter">
+                <div className="case-cover">
+                  <ProjectGallery project={project} />
+                </div>
               </div>
-            </div>
-            <div className="case-cover page-enter">
-              <PreviewArt project={project} large priority />
-              <p className="photo-credit">Fotografia contextual por <a href={project.photoCredit.sourceUrl} target="_blank" rel="noreferrer">{project.photoCredit.author} / Pexels</a> — <a href={project.photoCredit.licenseUrl} target="_blank" rel="noreferrer">licença</a>.</p>
             </div>
           </div>
         </header>
@@ -88,7 +91,7 @@ export default function ProjectDetail() {
       </article>
 
       <Link to={`/projetos/${next.id}`} className="next-case" aria-label={`Próximo projeto: ${next.name}`}>
-        <img src={next.imageSmall} alt="" loading="lazy" width="960" height="600" style={{ objectPosition: next.imagePosition ?? 'center' }} />
+        <img src={nextCover.smallSrc ?? nextCover.src} alt="" loading="lazy" width={nextCover.width} height={nextCover.height} style={{ objectPosition: next.imagePosition ?? 'center' }} />
         <span className="next-case-overlay" />
         <div className="container">
           <span>PRÓXIMO PROJETO / {next.number}</span>

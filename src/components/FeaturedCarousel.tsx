@@ -9,6 +9,13 @@ interface Props {
   projects: PortfolioProject[]
 }
 
+interface PointerGesture {
+  id: number
+  startX: number
+  startY: number
+  captured: boolean
+}
+
 function circularOffset(index: number, active: number, total: number) {
   let offset = index - active
   if (offset > total / 2) offset -= total
@@ -20,11 +27,16 @@ export default function FeaturedCarousel({ projects }: Props) {
   const [active, setActive] = useState(0)
   const stageRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<Array<HTMLAnchorElement | null>>([])
-  const pointerStart = useRef<number | null>(null)
+  const pointerGesture = useRef<PointerGesture | null>(null)
+  const suppressClick = useRef(false)
   const activeProject = projects[active]
 
   const goTo = useCallback((index: number) => {
-    setActive((index + projects.length) % projects.length)
+    setActive(((index % projects.length) + projects.length) % projects.length)
+  }, [projects.length])
+
+  const stepBy = useCallback((direction: number) => {
+    setActive((current) => (current + direction + projects.length) % projects.length)
   }, [projects.length])
 
   useLayoutEffect(() => {
@@ -58,15 +70,45 @@ export default function FeaturedCarousel({ projects }: Props) {
   }, [active, projects.length])
 
   function onPointerDown(event: React.PointerEvent<HTMLDivElement>) {
-    pointerStart.current = event.clientX
+    if (event.button !== 0 || (event.target as HTMLElement).closest('[data-carousel-control]')) return
+    pointerGesture.current = {
+      id: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      captured: false,
+    }
+  }
+
+  function onPointerMove(event: React.PointerEvent<HTMLDivElement>) {
+    const gesture = pointerGesture.current
+    if (!gesture || gesture.id !== event.pointerId || gesture.captured) return
+    const deltaX = event.clientX - gesture.startX
+    const deltaY = event.clientY - gesture.startY
+    if (Math.abs(deltaX) < 10 || Math.abs(deltaX) <= Math.abs(deltaY)) return
     event.currentTarget.setPointerCapture(event.pointerId)
+    gesture.captured = true
   }
 
   function onPointerUp(event: React.PointerEvent<HTMLDivElement>) {
-    if (pointerStart.current === null) return
-    const delta = event.clientX - pointerStart.current
-    pointerStart.current = null
-    if (Math.abs(delta) > 54) goTo(active + (delta < 0 ? 1 : -1))
+    const gesture = pointerGesture.current
+    if (!gesture || gesture.id !== event.pointerId) return
+    const delta = event.clientX - gesture.startX
+    if (gesture.captured && event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId)
+    }
+    pointerGesture.current = null
+    if (Math.abs(delta) <= 54) return
+
+    suppressClick.current = true
+    stepBy(delta < 0 ? 1 : -1)
+    window.setTimeout(() => { suppressClick.current = false }, 450)
+  }
+
+  function onPointerCancel(event: React.PointerEvent<HTMLDivElement>) {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId)
+    }
+    pointerGesture.current = null
   }
 
   return (
@@ -77,16 +119,17 @@ export default function FeaturedCarousel({ projects }: Props) {
       aria-label="Projetos em destaque"
       tabIndex={0}
       onKeyDown={(event) => {
-        if (event.key === 'ArrowLeft') goTo(active - 1)
-        if (event.key === 'ArrowRight') goTo(active + 1)
+        if (event.key === 'ArrowLeft') stepBy(-1)
+        if (event.key === 'ArrowRight') stepBy(1)
       }}
     >
       <div
         ref={stageRef}
         className="carousel-stage"
         onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
-        onPointerCancel={() => { pointerStart.current = null }}
+        onPointerCancel={onPointerCancel}
       >
         <span className="works-vertical-label" aria-hidden="true">LATEST WORKS</span>
         {projects.map((project, index) => (
@@ -98,6 +141,11 @@ export default function FeaturedCarousel({ projects }: Props) {
             aria-hidden={index !== active}
             tabIndex={index === active ? 0 : -1}
             onClick={(event) => {
+              if (suppressClick.current) {
+                event.preventDefault()
+                suppressClick.current = false
+                return
+              }
               if (index !== active) {
                 event.preventDefault()
                 goTo(index)
@@ -108,8 +156,8 @@ export default function FeaturedCarousel({ projects }: Props) {
             <span className="carousel-card-number">{project.number}</span>
           </Link>
         ))}
-        <button className="carousel-arrow carousel-arrow-prev" type="button" onClick={() => goTo(active - 1)} aria-label="Projeto anterior"><ArrowLeft /></button>
-        <button className="carousel-arrow carousel-arrow-next" type="button" onClick={() => goTo(active + 1)} aria-label="Próximo projeto"><ArrowRight /></button>
+        <button className="carousel-arrow carousel-arrow-prev" type="button" data-carousel-control onClick={() => stepBy(-1)} aria-label="Projeto anterior"><ArrowLeft /></button>
+        <button className="carousel-arrow carousel-arrow-next" type="button" data-carousel-control onClick={() => stepBy(1)} aria-label="Próximo projeto"><ArrowRight /></button>
       </div>
 
       <div className="carousel-copy" aria-live="polite">

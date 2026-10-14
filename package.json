@@ -4,7 +4,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "media:manifest": "node scripts/generate-project-media-manifest.mjs",
+    "test:media": "node scripts/test-project-media-manifest.mjs",
+    "predev": "npm run media:manifest",
     "dev": "vite --host 0.0.0.0",
+    "prebuild": "npm run media:manifest",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0"
   },
